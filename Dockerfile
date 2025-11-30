@@ -20,5 +20,5 @@ EXPOSE 5678
 # MCP gateway
 EXPOSE 8080
 
-# Override entrypoint: use tini to run our script instead of n8n directly
-ENTRYPOINT ["tini", "--", "/home/node/startall.sh"]
+# Use tini to run sh, which runs our script (script doesn't need +x)
+ENTRYPOINT ["tini", "--", "sh", "/home/node/startall.sh"]
