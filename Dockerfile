@@ -10,7 +10,7 @@ RUN npm install -g supergateway @azure-devops/mcp
 USER node
 
 # Copy entrypoint script
-COPY start-all.sh /startall.sh
+COPY startall.sh /startall.sh
 RUN chmod +x /startall.sh
 
 # n8n web UI
