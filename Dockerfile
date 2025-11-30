@@ -20,5 +20,5 @@ EXPOSE 5678
 # MCP gateway
 EXPOSE 8080
 
-# Run the script with sh (bash is not available in this image)
-CMD ["sh", "/home/node/startall.sh"]
+# Override entrypoint: use tini to run our script instead of n8n directly
+ENTRYPOINT ["tini", "--", "/home/node/startall.sh"]
