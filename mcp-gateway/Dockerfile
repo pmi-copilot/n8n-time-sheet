@@ -9,6 +9,9 @@ WORKDIR /app
 # Expose the MCP gateway port
 EXPOSE 8080
 
-# The AZURE_DEVOPS_PAT environment variable will be passed at runtime
+# AZURE_DEVOPS_ORG - Your Azure DevOps organization name (e.g., "mycompany")
+# AZURE_DEVOPS_PAT - Your Personal Access Token (set in Render env vars)
+
 # Run supergateway with the Azure DevOps MCP server
-CMD ["sh", "-c", "supergateway --stdio \"npx -y @azure-devops/mcp\" --port 8080 --outputTransport sse"]
+# Using "env" authentication which reads AZURE_DEVOPS_PAT from environment
+CMD ["sh", "-c", "supergateway --stdio \"npx -y @azure-devops/mcp ${AZURE_DEVOPS_ORG} --authentication env\" --port 8080 --outputTransport sse"]
