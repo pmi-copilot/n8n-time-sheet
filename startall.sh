@@ -1,8 +1,9 @@
 #!/bin/sh
 set -e
 
-# 1) Start MCP gateway on port 8080 (--sse mode with proper command format)
-supergateway --stdio "npx @azure-devops/mcp d2odevops" --port 8080 --outputTransport sse &
+# Ensure n8n binds to all interfaces (required for Render)
+export N8N_HOST=0.0.0.0
+export N8N_PORT=5678
 
-# 2) Start n8n (replace the current process with n8n)
+# Start n8n
 exec n8n
